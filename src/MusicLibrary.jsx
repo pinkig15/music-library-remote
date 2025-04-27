@@ -17,10 +17,9 @@ const MusicLibrary = ({ user }) => {
       .sort((a, b) =>
         a[sortBy].localeCompare(b[sortBy])
       );
-  }, [filter, filterBy, sortBy]);
+  }, [songs, filter, filterBy, sortBy]);
 
   const handleAddSong = () => {
-    // console.log(songs, setSongs)
     const newSong = { title: 'New Song', artist: 'New Artist', album: 'New Album' };
     setSongs([...songs, newSong]);
   };

@@ -1,25 +1,24 @@
-// src/components/SongList.jsx
 import React from 'react';
 
 const SongList = ({ songs, userRole, onRemove }) => {
   return (
     <div className="song-list">
-      {songs.map((song, index) => (
+      {songs.length > 0 ? songs.map((song, index) => (
         <div key={song.id || index} className="song-item" style={styles.songItem}>
           <div style={styles.songInfo}>
-            <div><strong>Title:</strong> {song.title}</div>
-            <div><strong>Album:</strong> {song.album}</div>
-            <div><strong>Artist:</strong> {song.artist}</div>
-          </div>
-
-          {/* Show Remove button only if user is admin */}
-          {userRole === 'admin' && (
+            <div>
+              <div><strong>Title:</strong> {song.title}</div>
+              <div><strong>Album:</strong> {song.album}</div>
+              <div><strong>Artist:</strong> {song.artist}</div>
+            </div>
+            {userRole === 'admin' && (
             <button style={styles.removeButton} onClick={() => onRemove(index)}>
-              Remove
-            </button>
-          )}
+                Remove
+              </button>
+            )}
+          </div>
         </div>
-      ))}
+      )) : <span style={styles.noData}>Sorry! No Music available!</span>}
     </div>
   );
 };
@@ -27,6 +26,9 @@ const SongList = ({ songs, userRole, onRemove }) => {
 const styles = {
   songInfo: {
     backgroundColor: '#ffffff',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: '16px',
     margin: '12px 0',
     borderRadius: '8px',
@@ -34,6 +36,7 @@ const styles = {
     fontFamily: 'Arial, sans-serif',
     color: '#333',
     transition: 'transform 0.2s ease-in-out',
+    fontSize: '18px'
   },
   songInfoHover: {
     transform: 'scale(1.02)',
@@ -46,6 +49,21 @@ const styles = {
     fontWeight: 'bold',
     color: '#555',
   },
+  removeButton: {
+    color: 'white',
+    backgroundColor: 'red',
+    borderRadius: '5px',
+    width: '100px',
+    fontSize: '18px',
+    cursor: 'pointer'
+  },
+  noData: {
+    textAlign: 'center',
+    display: 'block',
+    fontSize: '18px',
+    fontWeight: 'bold',
+    color: 'grey',
+  }
 };
 
 
