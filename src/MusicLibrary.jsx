@@ -35,7 +35,7 @@ const MusicLibrary = ({ user }) => {
     <div className="music-library">
       <h2 className="library-title">Music Library</h2>
 
-      {user === 'admin' && (
+      {user?.username === 'admin' && (
         <button className="add-song-btn" onClick={handleAddSong}>Add Song</button>
       )}
 
@@ -71,7 +71,7 @@ const MusicLibrary = ({ user }) => {
 
       <SongList 
         songs={filteredSongs}
-        userRole={user} 
+        userRole={user?.role} 
         onRemove={handleRemoveSong}
       />
     </div>
